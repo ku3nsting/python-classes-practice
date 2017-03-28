@@ -31,6 +31,19 @@ class VarText:
             self.vals.append(newValue)
             self.max = len(self.vals)-1
 
+class StringVarText:
+        def __init__(self, array, maxIndex, strings):
+            self.list = array
+            self.max = maxIndex
+            self.strs = strings
+
+        def printString(self, index):
+            print(str(self.list[index]) + self.strs[index])
+
+        def setString(self, newString, index):
+            self.strs[index] = newString
+            return self
+
 class Text:
         def __init__(self, array, maxIndex):
             self.list = array
@@ -64,6 +77,16 @@ varTest = VarText([" Hello, user!",
                   3,
                   [10, 11, 12, 13])
 
+strTest = StringVarText(["I want to eat a",
+                   "I want to eat a",
+                   "I want to eat a",
+                   "I want to eat a"],
+                  3,
+                  [" Rutabaga",
+                   " Banana",
+                   " Carrot",
+                   " Pear"])
+
 #****************************************#
 #****************************************#
 #BEGIN MAIN OUTPUT
@@ -85,6 +108,11 @@ for i in range(varTest.max + 1):
         varTest.printString(i)
         globalv = globalv + 1
 
+#print all data from third class instance
+print "\n"
+for i in range(strTest.max + 1):
+        strTest.printString(i)
+
 #Change globalv to 10
 globalv = 20
                       
@@ -100,3 +128,12 @@ for i in range(varTest.max + 1):
         varTest.setVal(i, i)
         varTest.printString(i)
         globalv = globalv + 1
+
+#print all data from third class instance
+print "\n"
+strTest.setString(" Cat", strTest.max - 3)
+strTest.setString(" Dog", strTest.max - 2)
+strTest.setString(" Bird", strTest.max - 1)
+strTest.setString(" Fish", strTest.max)
+for i in range(strTest.max + 1):
+        strTest.printString(i)
