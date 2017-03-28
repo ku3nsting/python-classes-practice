@@ -65,7 +65,7 @@ def printTest(v, i):
 #INITIALIZE TEXT COMPONENTS
 #initialize all non-variable lines:
 #****************************************#
-test = Text([" Hello, user!",
+test = Text(["Hello, user!",
              "This is the 1st line",
              "This is the 2nd line",
              "This is the 3rd line"], 3)
@@ -93,44 +93,54 @@ strTest = StringVarText(["I want to eat a",
 #****************************************#
 #****************************************#
 
+#Printing initial values of variables
+#in all three classes:
+
+print "INITIAL VALUES:"
+
 #Initialize global variable
 globalv = 0
 
 #print all data from first class instance
-print "\n"
+print " "
 for i in range(test.max + 1):
         print globalv, test.list[i]
         globalv = globalv + 1
 
 #print all data from second class instance
-print "\n"
+print " "
 for i in range(varTest.max + 1):
         varTest.printString(i)
         globalv = globalv + 1
 
 #print all data from third class instance
-print "\n"
+print " "
 for i in range(strTest.max + 1):
         strTest.printString(i)
 
+print "\nALL VALUES CHANGED:"
+
 #Change globalv to 10
+print " "
+print "Global counter changed from 0 to 20:"
 globalv = 20
                       
 #print all data from first class instance
-print "\n"
 for i in range(test.max + 1):
         print globalv, test.list[i]
         globalv = globalv + 1
 
+print " "
+print "Class counter base changed from 10 to 0 with setVal:"
 #print all data from second class instance
-print "\n"
 for i in range(varTest.max + 1):
         varTest.setVal(i, i)
         varTest.printString(i)
         globalv = globalv + 1
 
+print " "
+print "Class string variables updated individually with setString method:"
 #print all data from third class instance
-print "\n"
 strTest.setString(" Cat", strTest.max - 3)
 strTest.setString(" Dog", strTest.max - 2)
 strTest.setString(" Bird", strTest.max - 1)
