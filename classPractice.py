@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
-#########################################
-# CLASS PRACTICE
-# A script to practice the way python
-# classes initialize values
-# By Ku3nsting
-# March 28, 2017
-#########################################
+##########################################
+# CLASS PRACTICE                         #
+# A script to practice the way python    #
+# classes initialize values              #
+# By Ku3nsting                           #
+# March 28, 2017                         #
+##########################################
 
 import types
 
@@ -18,6 +18,18 @@ class Text:
         def __init__(self, array, maxIndex):
             self.list = array
             self.max = maxIndex
+
+#****************************************#
+#TEST function to print variable both
+#directly and from the class data
+#****************************************#
+def printTest(v, i):
+        #call print function on globalv directly:
+        print "Directly accessing globalv: {}".format(v)
+
+        #print it from the class:
+        print "Printing from class:"
+        print i
         
 #****************************************#
 #INITIALIZE TEXT COMPONENTS
@@ -57,30 +69,27 @@ globalv = 7
 #scope, and can't be changed after they
 #are initialized
 #****************************************#
-varLine = Text(["This line contains this variable: {}".format(globalv)], 0)
+varLine = Text(["This line contains globalv, which holds: {}".format(globalv)], 0)
 
 print varLine.list[varLine.max]
+
+#change value of globalv
+print "Directly accessing globalv: {}".format(globalv)
+print "\nUpdate value of globalv to 9"
+globalv = 9
+print "Directly accessing globalv: {}".format(globalv)
 
 #Try to change and re-print variable
 #doesn't work, despite the fact that "global" has changed outside of the class
 print "\nfirst try:"
-globalv = 9
 
-#call print function on globalv directly:
-print globalv
-
-#print it from the class:
-print varLine.list[varLine.max]
+printTest(globalv, varLine.list[varLine.max])
 
 #Change variable by re-initializing class
 print "\nsecond try:"
-varLine = Text(["This line contains this variable: {}".format(globalv)], 0)
+varLine = Text(["This line contains globalv, which holds: {}".format(globalv)], 0)
 
-#call print function on globalv directly:
-print globalv
-
-#print it from the class:
-print varLine.list[varLine.max]
+printTest(globalv, varLine.list[varLine.max])
 
 
 
