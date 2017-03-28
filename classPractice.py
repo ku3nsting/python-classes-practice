@@ -3,8 +3,7 @@
 ##########################################
 # CLASS PRACTICE                         #
 # A script to practice the way python    #
-# classes initialize values              #
-# By Ku3nsting                           #
+# classes initialize values              #                         
 # March 28, 2017                         #
 ##########################################
 
@@ -13,8 +12,26 @@ import types
 #****************************************#
 #INITIALIZE CLASS (to hold text component)
 #****************************************#
+
+class VarText:
+        def __init__(self, array, maxIndex, values):
+            self.list = array
+            self.max = maxIndex
+            self.vals = values
+
+        def printString(self, index):
+            print(str(self.vals[index]) + self.list[index])
+
+        def setVal(self, newVal, index):
+            self.vals[index] = newVal
+            return self
+
+        def updateObject(self, newString, newValue):
+            self.list.append(newString)
+            self.vals.append(newValue)
+            self.max = len(self.vals)-1
+
 class Text:
-        index = 0
         def __init__(self, array, maxIndex):
             self.list = array
             self.max = maxIndex
@@ -25,7 +42,7 @@ class Text:
 #****************************************#
 def printTest(v, i):
         #call print function on globalv directly:
-        print "Directly accessing globalv: {}".format(v)
+        print "Directly accessing globalv", v
 
         #print it from the class:
         print "Printing from class:"
@@ -35,11 +52,17 @@ def printTest(v, i):
 #INITIALIZE TEXT COMPONENTS
 #initialize all non-variable lines:
 #****************************************#
-test = Text(["Hello, user!",
+test = Text([" Hello, user!",
              "This is the 1st line",
              "This is the 2nd line",
              "This is the 3rd line"], 3)
 
+varTest = VarText([" Hello, user!",
+                   " This is the 1st line",
+                   " This is the 2nd line",
+                   " This is the 3rd line"],
+                  3,
+                  [10, 11, 12, 13])
 
 #****************************************#
 #****************************************#
@@ -50,52 +73,30 @@ test = Text(["Hello, user!",
 #Initialize global variable
 globalv = 0
 
-#change class data member "index" by assignment
-Text.index = 2
-
 #print all data from first class instance
+print "\n"
 for i in range(test.max + 1):
         print globalv, test.list[i]
         globalv = globalv + 1
 
-#Change global variable to 7
-globalv = 7
+#print all data from second class instance
+print "\n"
+for i in range(varTest.max + 1):
+        varTest.printString(i)
+        globalv = globalv + 1
 
-#****************************************#
-#INITIALIZE VARIABLE-ENHANCED TEXT
-#initialize variable lines as needed:
-#necessary because variables inside class
-#data member arrays seem to have a local
-#scope, and can't be changed after they
-#are initialized
-#****************************************#
-varLine = Text(["This line contains globalv, which holds: {}".format(globalv)], 0)
+#Change globalv to 10
+globalv = 20
+                      
+#print all data from first class instance
+print "\n"
+for i in range(test.max + 1):
+        print globalv, test.list[i]
+        globalv = globalv + 1
 
-print varLine.list[varLine.max]
-
-#change value of globalv
-print "Directly accessing globalv: {}".format(globalv)
-print "\nUpdate value of globalv to 9"
-globalv = 9
-print "Directly accessing globalv: {}".format(globalv)
-
-#Try to change and re-print variable
-#doesn't work, despite the fact that "global" has changed outside of the class
-print "\nfirst try:"
-
-printTest(globalv, varLine.list[varLine.max])
-
-#Change variable by re-initializing class
-print "\nsecond try:"
-varLine = Text(["This line contains globalv, which holds: {}".format(globalv)], 0)
-
-printTest(globalv, varLine.list[varLine.max])
-
-
-
-
-
-
-
-
-
+#print all data from second class instance
+print "\n"
+for i in range(varTest.max + 1):
+        varTest.setVal(i, i)
+        varTest.printString(i)
+        globalv = globalv + 1
